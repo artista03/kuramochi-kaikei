@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>倉持会計事務所 | 公認会計士・税理士 東京都文京区</title>
   <meta name="description" content="創業40年以上。東京都文京区の公認会計士・倉持公一郎事務所。法人・個人・相続のご相談は初回無料。">
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%230f2040'/><text y='.9em' font-size='68' x='50%' text-anchor='middle' font-family='serif' fill='%23c9a84c'>倉</text></svg>">
+  <!-- OGP -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="倉持会計事務所 | 公認会計士・税理士 東京都文京区">
+  <meta property="og:description" content="創業40年以上。東京都文京区の公認会計士・倉持公一郎事務所。法人・個人・相続のご相談は初回無料。">
+  <meta property="og:url" content="https://artista03.github.io/kuramochi-kaikei/">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="倉持会計事務所 | 公認会計士・税理士">
+  <meta name="twitter:description" content="創業40年以上。東京都文京区の公認会計士・倉持公一郎事務所。初回相談無料。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -289,9 +300,14 @@
     /* SOZOKU KNOWLEDGE */
     .sozoku-knowledge { padding: 80px 24px; background: var(--white); }
     .sk__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
-    .sk-item { background: var(--off-white); padding: 28px 20px; text-align: center; position: relative; }
+    .sk-item { background: var(--off-white); padding: 28px 20px; text-align: center; position: relative; transition: background 0.3s, transform 0.3s; }
+    .sk-item:hover { background: var(--navy); transform: translateY(-3px); }
+    .sk-item:hover .sk-item__title { color: var(--white); }
+    .sk-item:hover .sk-item__desc { color: rgba(255,255,255,0.6); }
     .sk-item__num { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px; }
-    .sk-item__title { font-family: 'Shippori Mincho', serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.6; }
+    .sk-item__title { font-family: 'Shippori Mincho', serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.6; margin-bottom: 10px; transition: color 0.3s; }
+    .sk-item__desc { font-size: 0.75rem; color: var(--gray); line-height: 1.7; transition: color 0.3s; }
+    @media (max-width: 900px) { .sk__grid { grid-template-columns: repeat(3, 1fr); } }
 
     /* NEWS */
     .news { padding: 80px 24px; background: var(--off-white); }
@@ -332,10 +348,8 @@
         <li><a href="#services">サービス</a></li>
         <li><a href="#pricing">料金</a></li>
         <li><a href="#voices">お客様の声</a></li>
-        <li><a href="#seminar">セミナー</a></li>
-        <li><a href="#blog">ブログ</a></li>
-        <li><a href="#publications">著書</a></li>
         <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#blog">ブログ・著書</a></li>
         <li><a href="#info">事務所案内</a></li>
         <li><a href="#contact" class="nav__cta">無料相談する</a></li>
       </ul>
@@ -697,22 +711,27 @@
         <div class="sk-item">
           <p class="sk-item__num">STAGE 01</p>
           <h3 class="sk-item__title">相続発生前<br>（生前対策）</h3>
+          <p class="sk-item__desc">遺言作成・贈与・資産整理など、元気なうちにできる対策が肝心です。</p>
         </div>
         <div class="sk-item">
           <p class="sk-item__num">STAGE 02</p>
           <h3 class="sk-item__title">相続発生後の<br>流れと分割</h3>
+          <p class="sk-item__desc">相続開始から10ヶ月以内が申告期限。遺産分割と納税額の最小化を同時に検討します。</p>
         </div>
         <div class="sk-item">
           <p class="sk-item__num">STAGE 03</p>
           <h3 class="sk-item__title">申告・納税</h3>
+          <p class="sk-item__desc">複数シミュレーションで最適な申告プランを提案。期限内の正確な申告を完了します。</p>
         </div>
         <div class="sk-item">
           <p class="sk-item__num">STAGE 04</p>
           <h3 class="sk-item__title">申告後の<br>手続き</h3>
+          <p class="sk-item__desc">名義変更・不動産登記など申告後も続く手続きを専門家ネットワークでサポートします。</p>
         </div>
         <div class="sk-item">
           <p class="sk-item__num">STAGE 05</p>
           <h3 class="sk-item__title">贈与について</h3>
+          <p class="sk-item__desc">令和5年改正対応。子・孫への計画的な贈与で次世代への資産移転を支援します。</p>
         </div>
       </div>
       <div style="margin-top:32px;text-align:center;">
@@ -786,14 +805,14 @@
           <div class="pub-card__img"><img src="http://kuramochikaikei.net/img/publication/book_01.jpg" alt="ワケあり不動産の相続対策" onerror="this.style.display='none'"></div>
           <div class="pub-card__body"><p class="pub-card__type">著書 / 経営者新書</p><h3 class="pub-card__title">ワケあり不動産の相続対策</h3><p class="pub-card__desc">相続トラブルの多くが不動産に関連していることを指摘し、分割と整理の方法をわかりやすく解説。</p><p class="pub-card__amazon">Amazon で見る →</p></div>
         </a>
-        <div class="pub-card">
+        <a href="https://www.amazon.co.jp/s?k=%E6%96%B0%E7%A8%8E%E5%88%B6%E6%99%82%E4%BB%A3+%E4%BA%8B%E6%A5%AD%E6%89%BF%E7%B6%99+%E5%80%89%E6%8C%81%E5%85%AC%E4%B8%80%E9%83%8E" target="_blank" rel="noopener" class="pub-card">
           <div class="pub-card__img"><img src="http://kuramochikaikei.net/img/publication/book_02.jpg" alt="新税制時代における事業継承・相続対策" onerror="this.style.display='none'"></div>
-          <div class="pub-card__body"><p class="pub-card__type">著書</p><h3 class="pub-card__title">新税制時代における事業承継・相続対策</h3><p class="pub-card__desc">多忙な経営者向けに複雑な手続きをわかりやすくまとめた実践的ガイドブック。</p></div>
-        </div>
-        <div class="pub-card">
+          <div class="pub-card__body"><p class="pub-card__type">著書</p><h3 class="pub-card__title">新税制時代における事業承継・相続対策</h3><p class="pub-card__desc">多忙な経営者向けに複雑な手続きをわかりやすくまとめた実践的ガイドブック。</p><p class="pub-card__amazon">Amazon で見る →</p></div>
+        </a>
+        <a href="https://www.amazon.co.jp/s?k=%E3%81%93%E3%82%8C%E3%81%8B%E3%82%89%E3%81%AE%E4%BC%9A%E7%A4%BE%E3%81%A5%E3%81%8F%E3%82%8A+%E5%80%89%E6%8C%81%E5%85%AC%E4%B8%80%E9%83%8E" target="_blank" rel="noopener" class="pub-card">
           <div class="pub-card__img"><img src="http://kuramochikaikei.net/img/publication/book_03.jpg" alt="これからの会社づくりのノウハウ" onerror="this.style.display='none'"></div>
-          <div class="pub-card__body"><p class="pub-card__type">著書</p><h3 class="pub-card__title">これからの会社づくりのノウハウ</h3><p class="pub-card__desc">起業・節税・相続対策に関する情報を事例を交えてわかりやすく説明。</p></div>
-        </div>
+          <div class="pub-card__body"><p class="pub-card__type">著書</p><h3 class="pub-card__title">これからの会社づくりのノウハウ</h3><p class="pub-card__desc">起業・節税・相続対策に関する情報を事例を交えてわかりやすく説明。</p><p class="pub-card__amazon">Amazon で見る →</p></div>
+        </a>
       </div>
       <div style="margin-top:48px;padding:32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;">
         <p class="section-label" style="margin-bottom:16px;">MEDIA</p>
@@ -969,7 +988,7 @@
         <a href="http://kuramochikaikei.net/privacy.html" target="_blank">プライバシーポリシー</a>
       </div>
     </div>
-    <div class="footer__bottom"><p>© 2025 倉持会計事務所 All rights reserved.</p></div>
+    <div class="footer__bottom"><p>© 2026 倉持会計事務所 All rights reserved.</p></div>
   </footer>
 
   <script>
@@ -1005,9 +1024,13 @@
 
     // Fade up
     const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
     }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    // HEROは即時表示（スクロール前から見えている）
+    setTimeout(() => {
+      document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
+    }, 100);
   </script>
 </body>
 </html>
