@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>倉持会計事務所 | 公認会計士・税理士 東京都文京区</title>
+  <meta name="description" content="創業40年以上。東京都文京区の公認会計士・倉持公一郎事務所。法人・個人・相続のご相談は初回無料。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f2040;
+      --navy-light: #1a3360;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --white: #ffffff;
+      --off-white: #f8f7f4;
+      --gray: #6b7280;
+      --gray-light: #f3f4f6;
+      --text: #1a1a2e;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Noto Sans JP', sans-serif; color: var(--text); background: var(--white); overflow-x: hidden; }
+
+    /* NAV */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.2); transition: box-shadow 0.3s;
+    }
+    .nav.scrolled { box-shadow: 0 2px 20px rgba(15,32,64,0.1); }
+    .nav__inner {
+      max-width: 1100px; margin: 0 auto; padding: 0 24px;
+      height: 68px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav__logo { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 700; color: var(--navy); text-decoration: none; letter-spacing: 0.05em; line-height: 1.3; }
+    .nav__logo span { display: block; font-size: 0.65rem; font-weight: 400; color: var(--gold); letter-spacing: 0.1em; margin-top: 1px; }
+    .nav__links { display: flex; gap: 28px; list-style: none; }
+    .nav__links a { font-size: 0.82rem; color: var(--navy); text-decoration: none; letter-spacing: 0.05em; position: relative; padding-bottom: 4px; }
+    .nav__links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+    .nav__links a:hover::after { width: 100%; }
+    .nav__cta { background: var(--navy) !important; color: var(--white) !important; padding: 8px 20px; border-radius: 4px; font-size: 0.8rem !important; transition: background 0.3s; }
+    .nav__cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
+    .nav__cta::after { display: none !important; }
+    .nav__tel { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav__hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); }
+
+    /* HERO */
+    .hero { min-height: 100vh; background: var(--navy); display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 68px; }
+    .hero__bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 50%); }
+    .hero__content { position: relative; max-width: 1100px; margin: 0 auto; padding: 80px 24px; width: 100%; }
+    .hero__label { font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+    .hero__label::before { content: ''; display: block; width: 32px; height: 1px; background: var(--gold); }
+    .hero__title { font-family: 'Shippori Mincho', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 700; color: var(--white); line-height: 1.4; margin-bottom: 28px; letter-spacing: 0.02em; }
+    .hero__title em { font-style: normal; color: var(--gold); }
+    .hero__desc { font-size: 1rem; color: rgba(255,255,255,0.7); line-height: 1.9; max-width: 520px; margin-bottom: 48px; }
+    .hero__btns { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 4px; font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; font-family: 'Noto Sans JP', sans-serif; }
+    .btn--primary { background: var(--gold); color: var(--navy); }
+    .btn--primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+    .btn--outline { background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.3); }
+    .btn--outline:hover { border-color: var(--gold); color: var(--gold); }
+    .hero__stats { position: absolute; right: 24px; bottom: 60px; display: flex; flex-direction: column; gap: 24px; }
+    .hero__stat { text-align: right; }
+    .hero__stat-num { font-family: 'Shippori Mincho', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+    .hero__stat-num span { font-size: 1rem; margin-left: 4px; }
+    .hero__stat-label { font-size: 0.72rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; margin-top: 4px; }
+    .hero__scroll { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; color: rgba(255,255,255,0.3); font-size: 0.65rem; letter-spacing: 0.2em; animation: bounce 2s infinite; }
+    .hero__scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent); }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(6px)} }
+
+    /* COMMON */
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label { font-size: 0.72rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+    .section-label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+    .section-title { font-family: 'Shippori Mincho', serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: var(--navy); margin-bottom: 16px; letter-spacing: 0.02em; }
+    .section-title--white { color: var(--white); }
+    .section-desc { color: var(--gray); font-size: 0.9rem; line-height: 1.8; max-width: 560px; margin-bottom: 48px; }
+    .section-desc--white { color: rgba(255,255,255,0.5); }
+    .gold-divider { height: 3px; background: linear-gradient(to right, var(--gold), transparent); }
+    .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* TARGETS */
+    .targets { background: var(--off-white); padding: 100px 24px; }
+    .targets__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .target-card { background: var(--white); padding: 48px 36px; position: relative; overflow: hidden; transition: transform 0.3s; text-decoration: none; color: inherit; display: block; }
+    .target-card:hover { transform: translateY(-4px); }
+    .target-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+    .target-card:hover::before { transform: scaleX(1); }
+    .target-card__num { font-family: 'Shippori Mincho', serif; font-size: 3rem; font-weight: 700; color: rgba(201,168,76,0.15); line-height: 1; margin-bottom: 20px; }
+    .target-card__icon { width: 48px; height: 48px; background: var(--navy); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+    .target-card__icon svg { width: 24px; height: 24px; color: var(--gold); }
+    .target-card__title { font-family: 'Shippori Mincho', serif; font-size: 1.3rem; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .target-card__desc { font-size: 0.85rem; color: var(--gray); line-height: 1.8; margin-bottom: 24px; }
+    .target-card__list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .target-card__list li { font-size: 0.82rem; color: var(--navy); padding-left: 16px; position: relative; }
+    .target-card__list li::before { content: '—'; position: absolute; left: 0; color: var(--gold); }
+
+    /* MESSAGE */
+    .message { padding: 100px 24px; background: var(--white); }
+    .message__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .message__visual { position: relative; }
+    .message__bg-rect { position: absolute; top: -20px; left: -20px; width: 80%; height: 80%; background: var(--navy); border-radius: 2px; z-index: 0; }
+    .message__img-wrap { position: relative; z-index: 1; background: var(--gray-light); border-radius: 2px; overflow: hidden; aspect-ratio: 4/5; display: flex; align-items: center; justify-content: center; }
+    .message__img-placeholder { text-align: center; color: var(--gray); }
+    .message__img-placeholder svg { width: 64px; height: 64px; opacity: 0.3; margin-bottom: 12px; }
+    .message__img-placeholder p { font-size: 0.8rem; }
+    .message__gold-line { position: absolute; bottom: -12px; right: -12px; width: 60%; height: 60%; border: 2px solid var(--gold); border-radius: 2px; z-index: 0; opacity: 0.4; }
+    .message__text blockquote { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; line-height: 2; color: var(--navy); border-left: 3px solid var(--gold); padding-left: 24px; margin: 32px 0; }
+    .message__body { font-size: 0.9rem; line-height: 2; color: var(--gray); }
+    .message__sign { margin-top: 32px; display: flex; flex-direction: column; gap: 4px; }
+    .message__sign-title { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--gold); }
+    .message__sign-name { font-family: 'Shippori Mincho', serif; font-size: 1.4rem; font-weight: 700; color: var(--navy); }
+
+    /* SERVICES */
+    .services { padding: 100px 24px; background: var(--navy); }
+    .services__tabs { display: flex; gap: 4px; margin-bottom: 48px; flex-wrap: wrap; }
+    .services__tab { padding: 10px 24px; font-size: 0.85rem; letter-spacing: 0.05em; cursor: pointer; border: 1px solid rgba(255,255,255,0.15); background: transparent; color: rgba(255,255,255,0.5); transition: all 0.3s; border-radius: 2px; font-family: 'Noto Sans JP', sans-serif; }
+    .services__tab.active, .services__tab:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 500; }
+    .services__panel { display: none; }
+    .services__panel.active { display: block; }
+    .services__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.08); }
+    .service-item { background: rgba(255,255,255,0.03); padding: 32px 28px; transition: background 0.3s; }
+    .service-item:hover { background: rgba(201,168,76,0.08); }
+    .service-item__num { font-size: 0.72rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 16px; }
+    .service-item__title { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .service-item__desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+    /* VOICES */
+    .voices { padding: 100px 24px; background: var(--off-white); }
+    .voices__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .voice-card { background: var(--white); padding: 32px 28px; border-radius: 2px; position: relative; }
+    .voice-card::before { content: '"'; font-family: 'Shippori Mincho', serif; font-size: 5rem; color: var(--gold); opacity: 0.2; position: absolute; top: 8px; left: 20px; line-height: 1; }
+    .voice-card__text { font-size: 0.88rem; line-height: 1.9; color: var(--text); margin-bottom: 20px; position: relative; }
+    .voice-card__from { font-size: 0.75rem; color: var(--gray); letter-spacing: 0.05em; padding-top: 16px; border-top: 1px solid var(--gray-light); }
+    .voice-card__from strong { display: block; color: var(--navy); font-weight: 500; margin-bottom: 2px; }
+
+    /* FAQ */
+    .faq { padding: 100px 24px; background: var(--white); }
+    .faq__list { max-width: 760px; }
+    .faq__item { border-bottom: 1px solid var(--gray-light); }
+    .faq__q { display: flex; align-items: flex-start; gap: 16px; padding: 24px 0; cursor: pointer; font-size: 0.95rem; font-weight: 500; color: var(--navy); letter-spacing: 0.02em; }
+    .faq__q-mark { flex-shrink: 0; width: 28px; height: 28px; background: var(--navy); color: var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
+    .faq__q-text { flex: 1; padding-top: 4px; }
+    .faq__q-icon { flex-shrink: 0; width: 20px; height: 20px; position: relative; margin-top: 4px; }
+    .faq__q-icon::before, .faq__q-icon::after { content: ''; position: absolute; background: var(--gold); transition: transform 0.3s, opacity 0.3s; }
+    .faq__q-icon::before { top: 9px; left: 0; width: 20px; height: 1px; }
+    .faq__q-icon::after { top: 0; left: 9px; width: 1px; height: 20px; }
+    .faq__item.open .faq__q-icon::after { transform: rotate(90deg); opacity: 0; }
+    .faq__a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.88rem; color: var(--gray); line-height: 1.9; padding-left: 44px; }
+    .faq__item.open .faq__a { max-height: 300px; padding-bottom: 24px; }
+
+    /* PUBLICATIONS */
+    .publications { padding: 100px 24px; background: var(--navy); }
+    .pub__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .pub-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; text-decoration: none; display: block; }
+    .pub-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .pub-card__img { width: 100%; aspect-ratio: 3/4; overflow: hidden; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; }
+    .pub-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .pub-card:hover .pub-card__img img { transform: scale(1.03); }
+    .pub-card__body { padding: 24px; }
+    .pub-card__type { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 10px; }
+    .pub-card__title { font-family: 'Shippori Mincho', serif; font-size: 0.95rem; font-weight: 700; color: var(--white); line-height: 1.6; margin-bottom: 10px; }
+    .pub-card__desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-bottom: 14px; }
+    .pub-card__amazon { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.05em; }
+
+    /* PRICING */
+    .pricing { padding: 100px 24px; background: var(--white); }
+    .pricing__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+    .price-card { border: 2px solid var(--gray-light); border-radius: 4px; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
+    .price-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .price-card.featured { border-color: var(--navy); }
+    .price-card__head { padding: 28px 28px 20px; background: var(--off-white); }
+    .price-card.featured .price-card__head { background: var(--navy); }
+    .price-card__label { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px; }
+    .price-card__name { font-family: 'Shippori Mincho', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+    .price-card.featured .price-card__name { color: var(--white); }
+    .price-card__from { font-size: 0.75rem; color: var(--gray); }
+    .price-card.featured .price-card__from { color: rgba(255,255,255,0.5); }
+    .price-card__price { font-family: 'Shippori Mincho', serif; font-size: 2rem; font-weight: 700; color: var(--navy); margin-top: 8px; }
+    .price-card.featured .price-card__price { color: var(--gold); }
+    .price-card__price span { font-size: 0.9rem; font-family: 'Noto Sans JP', sans-serif; }
+    .price-card__body { padding: 24px 28px; }
+    .price-card__desc { font-size: 0.85rem; color: var(--gray); line-height: 1.8; margin-bottom: 16px; }
+    .price-card__cond { font-size: 0.78rem; color: var(--navy); font-weight: 500; margin-bottom: 8px; }
+    .price-card__list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+    .price-card__list li { font-size: 0.8rem; color: var(--gray); padding-left: 14px; position: relative; line-height: 1.6; }
+    .price-card__list li::before { content: '✓'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+    .pricing__option { background: var(--off-white); border-radius: 4px; padding: 32px; }
+    .pricing__option h3 { font-family: 'Shippori Mincho', serif; font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+    .pricing__option-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .pricing__option-item { background: var(--white); padding: 16px; border-radius: 4px; }
+    .pricing__option-item h4 { font-size: 0.82rem; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
+    .pricing__option-item p { font-size: 0.78rem; color: var(--gold); font-weight: 700; }
+    .pricing__note { margin-top: 24px; font-size: 0.8rem; color: var(--gray); line-height: 1.8; }
+
+    /* BLOG */
+    .blog { padding: 100px 24px; background: var(--off-white); }
+    .blog__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 32px; }
+    .blog-card { background: var(--white); border-radius: 4px; padding: 28px; text-decoration: none; color: inherit; display: block; transition: transform 0.3s, box-shadow 0.3s; border-bottom: 3px solid transparent; }
+    .blog-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); border-bottom-color: var(--gold); }
+    .blog-card__cat { font-size: 0.7rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 10px; }
+    .blog-card__title { font-size: 0.92rem; font-weight: 500; color: var(--navy); line-height: 1.7; margin-bottom: 12px; }
+    .blog-card__date { font-size: 0.75rem; color: var(--gray); }
+    .blog__more { text-align: center; }
+    .btn--navy { background: var(--navy); color: var(--white); }
+    .btn--navy:hover { background: var(--navy-light); }
+
+    /* LINKS */
+    .links { padding: 80px 24px; background: var(--white); }
+    .links__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+    .link-item { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: var(--off-white); border-radius: 4px; text-decoration: none; color: var(--navy); font-size: 0.82rem; font-weight: 500; transition: background 0.3s, color 0.3s; }
+    .link-item:hover { background: var(--navy); color: var(--white); }
+    .link-item svg { width: 14px; height: 14px; flex-shrink: 0; opacity: 0.5; }
+
+    /* SEMINAR */
+    .seminar { padding: 100px 24px; background: var(--off-white); }
+    .seminar__list { display: flex; flex-direction: column; gap: 0; max-width: 760px; }
+    .seminar__item { display: flex; gap: 32px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .seminar__date { flex-shrink: 0; width: 100px; }
+    .seminar__date-year { font-size: 0.72rem; color: var(--gold); letter-spacing: 0.1em; }
+    .seminar__date-day { font-family: 'Shippori Mincho', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+    .seminar__title { font-size: 0.92rem; font-weight: 500; color: var(--navy); line-height: 1.7; }
+
+    /* INFO */
+    .info { padding: 100px 24px; background: var(--white); }
+    .info__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .info__table { width: 100%; border-collapse: collapse; }
+    .info__table tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+    .info__table th { text-align: left; font-size: 0.78rem; font-weight: 500; color: var(--gray); letter-spacing: 0.05em; padding: 16px 0; width: 32%; vertical-align: top; }
+    .info__table td { font-size: 0.88rem; color: var(--navy); padding: 16px 0; line-height: 1.8; }
+    .info__map { border-radius: 4px; overflow: hidden; height: 340px; background: var(--gray-light); }
+    .info__map iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    /* CONTACT */
+    .contact { padding: 100px 24px; background: var(--navy); }
+    .contact__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+    .contact__tel-block { background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3); padding: 36px; border-radius: 4px; margin-bottom: 24px; }
+    .contact__tel-label { font-size: 0.75rem; letter-spacing: 0.15em; color: var(--gold); margin-bottom: 12px; }
+    .contact__tel-num { font-family: 'Shippori Mincho', serif; font-size: 2rem; font-weight: 700; color: var(--white); letter-spacing: 0.05em; text-decoration: none; display: block; transition: color 0.3s; }
+    .contact__tel-num:hover { color: var(--gold); }
+    .contact__tel-hours { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 8px; }
+    .contact__free { font-size: 0.85rem; color: var(--gold); font-weight: 500; margin-top: 16px; }
+    .contact__note { font-size: 0.82rem; color: rgba(255,255,255,0.4); line-height: 1.9; }
+    .form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    .form-group label { font-size: 0.8rem; color: rgba(255,255,255,0.6); letter-spacing: 0.05em; }
+    .form-group input, .form-group select, .form-group textarea { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.12); border-radius: 4px; padding: 12px 16px; font-size: 0.88rem; color: var(--white); font-family: 'Noto Sans JP', sans-serif; transition: border-color 0.3s; width: 100%; }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .form-group input::placeholder, .form-group textarea::placeholder { color: rgba(255,255,255,0.25); }
+    .form-group select option { background: var(--navy); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .btn--gold { background: var(--gold); color: var(--navy); width: 100%; justify-content: center; font-size: 0.9rem; font-weight: 700; }
+    .btn--gold:hover { background: var(--gold-light); }
+
+    /* FOOTER */
+    .footer { background: #080f1e; padding: 48px 24px 24px; }
+    .footer__inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: flex-start; padding-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; gap: 32px; }
+    .footer__logo { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 700; color: var(--white); text-decoration: none; }
+    .footer__logo span { display: block; font-size: 0.65rem; color: var(--gold); letter-spacing: 0.1em; margin-top: 4px; }
+    .footer__links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer__links a { font-size: 0.8rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
+    .footer__links a:hover { color: var(--gold); }
+    .footer__bottom { max-width: 1100px; margin: 0 auto; padding-top: 20px; font-size: 0.72rem; color: rgba(255,255,255,0.2); text-align: center; letter-spacing: 0.05em; }
+
+    /* WHY US */
+    .whyus { padding: 100px 24px; background: var(--navy); }
+    .whyus__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+    .whyus-card { background: rgba(255,255,255,0.03); padding: 40px 28px; border-top: 3px solid transparent; transition: border-color 0.3s, background 0.3s; }
+    .whyus-card:hover { border-top-color: var(--gold); background: rgba(201,168,76,0.06); }
+    .whyus-card__num { font-family: 'Shippori Mincho', serif; font-size: 2.5rem; font-weight: 700; color: rgba(201,168,76,0.2); line-height: 1; margin-bottom: 16px; }
+    .whyus-card__title { font-family: 'Shippori Mincho', serif; font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .whyus-card__desc { font-size: 0.82rem; color: rgba(255,255,255,0.5); line-height: 1.8; }
+
+    /* PROCESS */
+    .process { padding: 100px 24px; background: var(--off-white); }
+    .process__steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
+    .process__steps::before { content: ''; position: absolute; top: 36px; left: 12.5%; right: 12.5%; height: 1px; background: var(--gold); opacity: 0.3; }
+    .process-step { padding: 0 20px; text-align: center; position: relative; }
+    .process-step__num { width: 72px; height: 72px; background: var(--navy); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-family: 'Shippori Mincho', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold); position: relative; z-index: 1; }
+    .process-step__title { font-family: 'Shippori Mincho', serif; font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .process-step__desc { font-size: 0.82rem; color: var(--gray); line-height: 1.8; }
+
+    /* SOZOKU KNOWLEDGE */
+    .sozoku-knowledge { padding: 80px 24px; background: var(--white); }
+    .sk__grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
+    .sk-item { background: var(--off-white); padding: 28px 20px; text-align: center; position: relative; }
+    .sk-item__num { font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); margin-bottom: 8px; }
+    .sk-item__title { font-family: 'Shippori Mincho', serif; font-size: 0.95rem; font-weight: 700; color: var(--navy); line-height: 1.6; }
+
+    /* NEWS */
+    .news { padding: 80px 24px; background: var(--off-white); }
+    .news__list { max-width: 760px; }
+    .news__item { display: flex; gap: 24px; align-items: baseline; padding: 16px 0; border-bottom: 1px solid rgba(0,0,0,0.06); font-size: 0.88rem; }
+    .news__date { flex-shrink: 0; font-size: 0.78rem; color: var(--gold); letter-spacing: 0.05em; }
+    .news__text { color: var(--navy); line-height: 1.7; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .nav__links { display: none; }
+      .nav__hamburger { display: flex; }
+      .nav__links.open { display: flex; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: var(--white); padding: 24px; gap: 20px; border-bottom: 1px solid var(--gray-light); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+      .hero__stats { display: none; }
+      .targets__grid, .voices__grid, .pub__grid, .info__grid, .contact__inner { grid-template-columns: 1fr; }
+      .message__inner { grid-template-columns: 1fr; }
+      .message__visual { display: none; }
+      .services__grid { grid-template-columns: 1fr; }
+      .pricing__grid { grid-template-columns: 1fr; }
+      .pricing__option-grid { grid-template-columns: repeat(2, 1fr); }
+      .blog__grid { grid-template-columns: 1fr; }
+      .links__grid { grid-template-columns: repeat(2, 1fr); }
+      .whyus__grid { grid-template-columns: repeat(2, 1fr); }
+      .process__steps { grid-template-columns: repeat(2, 1fr); }
+      .process__steps::before { display: none; }
+      .sk__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo">倉持会計事務所<span>公認会計士 倉持公一郎</span></a>
+      <button class="nav__hamburger" id="hamburger"><span></span><span></span><span></span></button>
+      <ul class="nav__links" id="navLinks">
+        <li><a href="#services">サービス</a></li>
+        <li><a href="#pricing">料金</a></li>
+        <li><a href="#voices">お客様の声</a></li>
+        <li><a href="#seminar">セミナー</a></li>
+        <li><a href="#blog">ブログ</a></li>
+        <li><a href="#publications">著書</a></li>
+        <li><a href="#faq">よくある質問</a></li>
+        <li><a href="#info">事務所案内</a></li>
+        <li><a href="#contact" class="nav__cta">無料相談する</a></li>
+      </ul>
+      <a href="tel:0338286251" class="nav__tel">03-3828-6251</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero__bg"></div>
+    <div class="hero__content">
+      <p class="hero__label fade-up">CERTIFIED PUBLIC ACCOUNTANT · TOKYO BUNKYO</p>
+      <h1 class="hero__title fade-up" style="transition-delay:0.1s">
+        経営を、数字で<em>守る</em>。<br>
+        創業から<em>40年以上</em>の<br>
+        信頼と実績。
+      </h1>
+      <p class="hero__desc fade-up" style="transition-delay:0.2s">
+        東京都文京区に拠点を置く公認会計士事務所。<br>
+        法人・個人・相続まで、ワンストップでサポートします。<br>
+        初回相談は無料。お気軽にご連絡ください。
+      </p>
+      <div class="hero__btns fade-up" style="transition-delay:0.3s">
+        <a href="#contact" class="btn btn--primary">無料で相談する →</a>
+        <a href="#services" class="btn btn--outline">サービスを見る</a>
+      </div>
+    </div>
+    <div class="hero__stats">
+      <div class="hero__stat"><div class="hero__stat-num">40<span>年以上</span></div><div class="hero__stat-label">創業からの実績</div></div>
+      <div class="hero__stat"><div class="hero__stat-num">3<span>冊</span></div><div class="hero__stat-label">代表著書</div></div>
+      <div class="hero__stat"><div class="hero__stat-num">0<span>円</span></div><div class="hero__stat-label">初回相談料</div></div>
+    </div>
+    <div class="hero__scroll"><span>SCROLL</span><div class="hero__scroll-line"></div></div>
+  </section>
+
+  <div class="gold-divider"></div>
+
+  <!-- TARGETS -->
+  <section class="targets" id="targets">
+    <div class="container">
+      <p class="section-label fade-up">WHO WE SERVE</p>
+      <h2 class="section-title fade-up">どなたのご相談にも対応します</h2>
+      <p class="section-desc fade-up">法人・個人・相続それぞれに特化したサービスをご用意しています。</p>
+      <div class="targets__grid fade-up">
+        <a href="#services" class="target-card">
+          <div class="target-card__num">01</div>
+          <div class="target-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18M9 8h6M9 12h6M9 16h6M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"/></svg></div>
+          <h3 class="target-card__title">法人のお客様</h3>
+          <p class="target-card__desc">月次決算から事業承継まで、会社経営を数字でサポートします。</p>
+          <ul class="target-card__list"><li>会計・税務顧問</li><li>経営コンサルティング</li><li>事業承継支援</li><li>リスクマネジメント</li></ul>
+        </a>
+        <a href="#services" class="target-card">
+          <div class="target-card__num">02</div>
+          <div class="target-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+          <h3 class="target-card__title">個人のお客様</h3>
+          <p class="target-card__desc">確定申告・不動産・会社設立など、個人の税務を的確に処理します。</p>
+          <ul class="target-card__list"><li>確定申告業務</li><li>不動産所得対応</li><li>会社設立・創業支援</li><li>青色申告</li></ul>
+        </a>
+        <a href="#services" class="target-card">
+          <div class="target-card__num">03</div>
+          <div class="target-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l9-9 9 9M5 10v9a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1v-9"/></svg></div>
+          <h3 class="target-card__title">相続でお困りの方</h3>
+          <p class="target-card__desc">30年以上の相続対応経験。生前対策から申告まで安心してお任せください。</p>
+          <ul class="target-card__list"><li>相続税申告</li><li>生前対策</li><li>セカンドオピニオン</li><li>不動産相続対策</li></ul>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="whyus" id="whyus">
+    <div class="container">
+      <p class="section-label fade-up">WHY CHOOSE US</p>
+      <h2 class="section-title section-title--white fade-up">選ばれる4つの理由</h2>
+      <p class="section-desc section-desc--white fade-up">創業40年以上、多くのお客様にご支持いただいている理由をご紹介します。</p>
+      <div class="whyus__grid fade-up">
+        <div class="whyus-card">
+          <div class="whyus-card__num">01</div>
+          <h3 class="whyus-card__title">提案型サービス</h3>
+          <p class="whyus-card__desc">ただ申告するだけでなく、節税・資金計画・経営改善まで能動的に提案します。お客様の課題を先回りして解決します。</p>
+        </div>
+        <div class="whyus-card">
+          <div class="whyus-card__num">02</div>
+          <h3 class="whyus-card__title">税務調査対応</h3>
+          <p class="whyus-card__desc">独自チェックリストによる精度の高い申告で、税務調査でも安心。厳格な指導で追徴なしの実績があります。</p>
+        </div>
+        <div class="whyus-card">
+          <div class="whyus-card__num">03</div>
+          <h3 class="whyus-card__title">経験豊富なスタッフ</h3>
+          <p class="whyus-card__desc">創業40年以上、法人・個人・相続・医療と幅広い分野で培ってきた深い専門知識と経験を提供します。</p>
+        </div>
+        <div class="whyus-card">
+          <div class="whyus-card__num">04</div>
+          <h3 class="whyus-card__title">きめ細かな対応</h3>
+          <p class="whyus-card__desc">月次巡回監査で定期的に訪問。弁護士・司法書士・行政書士など専門家と連携したワンストップサービスを提供します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section class="message" id="message">
+    <div class="container">
+      <div class="message__inner">
+        <div class="message__visual">
+          <div class="message__bg-rect"></div>
+          <div class="message__img-wrap">
+            <div class="message__img-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><circle cx="12" cy="8" r="5"/><path d="M3 21c0-5 4-9 9-9s9 4 9 9"/></svg>
+              <p>代表写真</p>
+            </div>
+          </div>
+          <div class="message__gold-line"></div>
+        </div>
+        <div class="message__text fade-up">
+          <p class="section-label">MESSAGE FROM PRESIDENT</p>
+          <h2 class="section-title">節税より、<br>経営と家族を守ること。</h2>
+          <blockquote>「高額の銀行借り入れをして節税するより、家族が破綻しないような相続対策を。経営を第一に考えるプランをお勧めしております」</blockquote>
+          <p class="message__body">
+            監査法人退職後、1982年に事務所を創業。米国出張でホスピタルチェーンの経営効率化に触れ、「数字で経営を守る」という姿勢を確立しました。眼科・歯科など多くの医師との関わりを経て、医師会での研修講師も務めています。<br><br>
+            バブル期の地主相談で節税名目の高額借入に反対した経験から、「お客様と家族が末永く幸せになれる対策」を最優先に考えています。弁護士・行政書士など各分野の専門家と提携し、ワンストップで対応できる体制を整えています。
+          </p>
+          <div class="message__sign">
+            <span class="message__sign-title">代表 公認会計士・税理士</span>
+            <span class="message__sign-name">倉持 公一郎</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <p class="section-label fade-up">SERVICES</p>
+      <h2 class="section-title section-title--white fade-up">サービス案内</h2>
+      <p class="section-desc section-desc--white fade-up">法人・個人・相続・医療介護の4分野に対応しています。</p>
+      <div class="services__tabs fade-up">
+        <button class="services__tab active" data-tab="corporate">法人向け</button>
+        <button class="services__tab" data-tab="personal">個人向け</button>
+        <button class="services__tab" data-tab="inheritance">相続関連</button>
+        <button class="services__tab" data-tab="medical">医療・介護</button>
+      </div>
+      <div class="services__panel active" id="panel-corporate">
+        <div class="services__grid">
+          <div class="service-item"><div class="service-item__num">01</div><h3 class="service-item__title">会計・税務顧問</h3><p class="service-item__desc">月次巡回監査を基本とし、独自チェックリストで正確・精度の高い月次決算を実施。経理担当者への指導も行います。</p></div>
+          <div class="service-item"><div class="service-item__num">02</div><h3 class="service-item__title">決算関連業務</h3><p class="service-item__desc">節税を基本とした適正申告。決算3ヶ月前の検討会と決算報告会を開催。金融機関からも高い評価をいただいています。</p></div>
+          <div class="service-item"><div class="service-item__num">03</div><h3 class="service-item__title">経営コンサルティング</h3><p class="service-item__desc">TKC継続MASシステムを活用し、資金計画・予算管理・経営改善計画・タックスプランニングを実施します。</p></div>
+          <div class="service-item"><div class="service-item__num">04</div><h3 class="service-item__title">人事・労務関連</h3><p class="service-item__desc">社会保険労務士と提携し、給与計算・労働保険手続・就業規則作成・ソフト導入支援を行います。</p></div>
+          <div class="service-item"><div class="service-item__num">05</div><h3 class="service-item__title">リスクマネジメント</h3><p class="service-item__desc">生命保険による企業防衛や退職金準備など、様々なリスクから会社を守るためのプランニングをご提供します。</p></div>
+          <div class="service-item"><div class="service-item__num">06</div><h3 class="service-item__title">事業承継支援</h3><p class="service-item__desc">後継者育成・株式評価・譲渡・贈与プランなど、中小企業の世代交代をスムーズに支援します。</p></div>
+        </div>
+      </div>
+      <div class="services__panel" id="panel-personal">
+        <div class="services__grid">
+          <div class="service-item"><div class="service-item__num">01</div><h3 class="service-item__title">確定申告業務</h3><p class="service-item__desc">毎年2月〜3月の所得税申告を申告代行と節税対策アドバイスを含めてサポートします。</p></div>
+          <div class="service-item"><div class="service-item__num">02</div><h3 class="service-item__title">事業所得対応</h3><p class="service-item__desc">個人事業主向けに月次処理・税務相談・経理指導・決算対策・所得税・消費税申告を総合支援します。</p></div>
+          <div class="service-item"><div class="service-item__num">03</div><h3 class="service-item__title">不動産所得対応</h3><p class="service-item__desc">減価償却計算・修繕費判定・資金繰り相談・賃貸併用住宅の費用按分などをサポートします。</p></div>
+          <div class="service-item"><div class="service-item__num">04</div><h3 class="service-item__title">資産税対応</h3><p class="service-item__desc">土地建物・株式譲渡時の税務対応。同族会社株式譲渡などの複雑案件にも対応しています。</p></div>
+          <div class="service-item"><div class="service-item__num">05</div><h3 class="service-item__title">会社設立・創業支援</h3><p class="service-item__desc">法人化のメリット・デメリット検討からシミュレーション・各種手続きまで一括サポートします。認定支援機関として補助金申請支援も行います。</p></div>
+          <div class="service-item"><div class="service-item__num">06</div><h3 class="service-item__title">青色申告</h3><p class="service-item__desc">55万円・65万円の特別控除など各種特典を活用した節税対策をサポートします。</p></div>
+        </div>
+      </div>
+      <div class="services__panel" id="panel-inheritance">
+        <div class="services__grid">
+          <div class="service-item"><div class="service-item__num">01</div><h3 class="service-item__title">相続税申告</h3><p class="service-item__desc">相続発生から申告まで10ヶ月間、遺産分配と納税額最小化を顧客と協働で検討。期限内に正確な申告を完了します。</p></div>
+          <div class="service-item"><div class="service-item__num">02</div><h3 class="service-item__title">生前対策サービス</h3><p class="service-item__desc">一次相続だけでなく二次相続も視野に入れた対策プランを提案。子・孫への贈与や遺言作成をカスタマイズして支援します。</p></div>
+          <div class="service-item"><div class="service-item__num">03</div><h3 class="service-item__title">セカンドオピニオン</h3><p class="service-item__desc">過去の資産評価に不安がある場合、再評価を支援。複数の評価結果の比較を推奨しています。</p></div>
+        </div>
+      </div>
+      <div class="services__panel" id="panel-medical">
+        <div class="services__grid">
+          <div class="service-item"><div class="service-item__num">01</div><h3 class="service-item__title">会計・税務顧問</h3><p class="service-item__desc">医療機関特有の会計・税務に精通したサポートを提供します。</p></div>
+          <div class="service-item"><div class="service-item__num">02</div><h3 class="service-item__title">医療法人設立</h3><p class="service-item__desc">医療法人化の手続きから税務まで一括対応します。</p></div>
+          <div class="service-item"><div class="service-item__num">03</div><h3 class="service-item__title">経理代行・給与計算</h3><p class="service-item__desc">月次の経理業務・給与計算をアウトソーシングできます。</p></div>
+          <div class="service-item"><div class="service-item__num">04</div><h3 class="service-item__title">節税対策</h3><p class="service-item__desc">医療機関向けの節税スキームをご提案します。</p></div>
+          <div class="service-item"><div class="service-item__num">05</div><h3 class="service-item__title">事業承継支援</h3><p class="service-item__desc">クリニックの世代交代・承継を専門的にサポートします。</p></div>
+          <div class="service-item"><div class="service-item__num">06</div><h3 class="service-item__title">社会福祉法人コンサル</h3><p class="service-item__desc">介護・福祉事業者向けの経営・税務コンサルティングです。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <p class="section-label fade-up">PRICING</p>
+      <h2 class="section-title fade-up">相続申告の料金プラン</h2>
+      <p class="section-desc fade-up">遺産の規模や状況に応じた3つのプランをご用意しています。まずはお気軽にご相談ください。</p>
+      <div class="pricing__grid fade-up">
+        <div class="price-card">
+          <div class="price-card__head">
+            <p class="price-card__label">PACK PLAN</p>
+            <h3 class="price-card__name">申告パックプラン</h3>
+            <p class="price-card__from">費用を抑えたい方向け</p>
+            <p class="price-card__price">21<span>万円〜</span></p>
+          </div>
+          <div class="price-card__body">
+            <p class="price-card__desc">遺産総額5,000万円未満の方向けのパックプラン。遺産分割が決定済みでシンプルなケースに対応。</p>
+            <p class="price-card__cond">対象条件</p>
+            <ul class="price-card__list">
+              <li>遺産分割が決定済み</li>
+              <li>相続人間で争いがない</li>
+              <li>遺産総額5,000万円未満</li>
+            </ul>
+          </div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-card__head">
+            <p class="price-card__label">STANDARD PLAN</p>
+            <h3 class="price-card__name">申告通常プラン</h3>
+            <p class="price-card__from">複数土地・非上場株式をお持ちの方</p>
+            <p class="price-card__price">30<span>万円〜</span></p>
+          </div>
+          <div class="price-card__body">
+            <p class="price-card__desc">複数の土地や非上場株式を所有している方向けの標準プラン。遺産総額に応じて段階的な料金設定。</p>
+            <p class="price-card__cond">対応内容</p>
+            <ul class="price-card__list">
+              <li>複数土地・非上場株式の評価</li>
+              <li>遺産分割協議書の作成</li>
+              <li>必要書類の取得代行</li>
+              <li>申告書の作成・提出</li>
+            </ul>
+          </div>
+        </div>
+        <div class="price-card">
+          <div class="price-card__head">
+            <p class="price-card__label">EXEMPTION PLAN</p>
+            <h3 class="price-card__name">申告不要プラン</h3>
+            <p class="price-card__from">相続税がかからない方向け</p>
+            <p class="price-card__price">20<span>万円（一律）</span></p>
+          </div>
+          <div class="price-card__body">
+            <p class="price-card__desc">相続財産が基礎控除以下の場合に対応。申告不要でも財産評価・協議書作成・税務相談を含む安心パック。</p>
+            <p class="price-card__cond">含まれるサービス</p>
+            <ul class="price-card__list">
+              <li>財産評価</li>
+              <li>遺産分割協議書作成</li>
+              <li>税務相談</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pricing__option fade-up">
+        <h3>オプションサービス</h3>
+        <div class="pricing__option-grid">
+          <div class="pricing__option-item"><h4>預金調査</h4><p>1万円／口座</p></div>
+          <div class="pricing__option-item"><h4>土地評価</h4><p>5.5万円／筆</p></div>
+          <div class="pricing__option-item"><h4>非上場株式評価</h4><p>15万円〜</p></div>
+          <div class="pricing__option-item"><h4>書類取得代行</h4><p>別途お見積り</p></div>
+        </div>
+        <p class="pricing__note">※ 法人・個人の顧問料については規模・業務内容によって異なります。お気軽にお問い合わせください。初回見積りは無料です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <div class="container">
+      <p class="section-label fade-up">HOW IT WORKS</p>
+      <h2 class="section-title fade-up">ご契約までの流れ</h2>
+      <p class="section-desc fade-up">初めてのお客様も安心してご相談いただけます。</p>
+      <div class="process__steps fade-up">
+        <div class="process-step">
+          <div class="process-step__num">01</div>
+          <h3 class="process-step__title">初回無料相談</h3>
+          <p class="process-step__desc">お電話またはフォームからご連絡ください。現状のお悩みやご要望をヒアリングします。来所・オンライン対応可。</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">02</div>
+          <h3 class="process-step__title">ご提案・お見積り</h3>
+          <p class="process-step__desc">ヒアリング内容をもとに、最適なサービス内容と料金をご提案します。見積りは無料です。</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">03</div>
+          <h3 class="process-step__title">ご契約</h3>
+          <p class="process-step__desc">内容にご納得いただけましたらご契約。契約月は振込、翌月から口座引き落としになります。</p>
+        </div>
+        <div class="process-step">
+          <div class="process-step__num">04</div>
+          <h3 class="process-step__title">継続サポート</h3>
+          <p class="process-step__desc">月次巡回監査を基本に、定期的な訪問と迅速な相談対応で経営をサポートし続けます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOICES -->
+  <section class="voices" id="voices">
+    <div class="container">
+      <p class="section-label fade-up">TESTIMONIALS</p>
+      <h2 class="section-title fade-up">お客様の声</h2>
+      <p class="section-desc fade-up">様々な業種・規模のお客様からご支持いただいています。</p>
+      <div class="voices__grid fade-up">
+        <div class="voice-card"><p class="voice-card__text">頻繁に巡回監査してくれるので、いろいろ質問もできますし、決算対策も相談しながらできるようになりました。</p><div class="voice-card__from"><strong>東京都荒川区 / 刺しゅう業 K社様</strong>法人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">厳格な指導のおかげで税務調査で追徴なし。相続・後継者の引継ぎも丁寧にご指導いただいています。</p><div class="voice-card__from"><strong>東京都葛飾区 / 医療法人（耳鼻咽喉科）S会様</strong>法人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">21年間お任せで、難しい計算をせずに済み、楽をさせていただいております。信頼できる存在です。</p><div class="voice-card__from"><strong>文京区 / 不動産賃貸業 I様</strong>個人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">相続税申告を期限内に対応していただき、大変満足しています。複数のシミュレーション資料で最適案を選べました。</p><div class="voice-card__from"><strong>個人 T様</strong>相続のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">確認書類が丁寧で、とても心強く信頼できる存在です。確定申告も毎年安心してお任せしています。</p><div class="voice-card__from"><strong>豊島区 / 不動産賃貸業 I様</strong>個人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">帳簿作成を一から指導していただき、月次決算で安心感を得ました。税務調査対応もスムーズでした。</p><div class="voice-card__from"><strong>千葉県鎌ケ谷市 / 金属建具工事業 K社様</strong>法人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">経理業務のアドバイスにより、本来の営業活動に使える時間が増えました。</p><div class="voice-card__from"><strong>東京都文京区 / 小売業 C社様</strong>法人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">保険相談や節税対策を提案してもらい安心です。月次業務も丁寧に対応いただいています。</p><div class="voice-card__from"><strong>千葉県佐倉市 / 医療法人 H会様</strong>法人のお客様</div></div>
+        <div class="voice-card"><p class="voice-card__text">父の相続税申告と確定申告について的確なアドバイスをいただきました。大変助かりました。</p><div class="voice-card__from"><strong>個人 B様</strong>相続のお客様</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog" id="blog">
+    <div class="container">
+      <p class="section-label fade-up">STAFF BLOG</p>
+      <h2 class="section-title fade-up">スタッフブログ</h2>
+      <p class="section-desc fade-up">身近な税金についての役立つ情報を発信しています。</p>
+      <div class="blog__grid fade-up">
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="blog-card">
+          <p class="blog-card__cat">税制改正</p>
+          <h3 class="blog-card__title">おさらい「年収の壁」〜令和7年税制改正による変更点〜</h3>
+          <p class="blog-card__date">2025年10月3日</p>
+        </a>
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="blog-card">
+          <p class="blog-card__cat">所得税</p>
+          <h3 class="blog-card__title">「103万円の壁」どうなった？〜非課税ラインが160万円に〜</h3>
+          <p class="blog-card__date">2025年5月12日</p>
+        </a>
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="blog-card">
+          <p class="blog-card__cat">相続税</p>
+          <h3 class="blog-card__title">遺産分割について その６〜一次相続と二次相続の違い〜</h3>
+          <p class="blog-card__date">2025年4月21日</p>
+        </a>
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="blog-card">
+          <p class="blog-card__cat">相続税</p>
+          <h3 class="blog-card__title">遺産分割について その５〜不動産相続と小規模宅地等の特例〜</h3>
+          <p class="blog-card__date">2025年1月24日</p>
+        </a>
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="blog-card">
+          <p class="blog-card__cat">相続税</p>
+          <h3 class="blog-card__title">遺産分割について その４〜不動産分割方法と配偶者居住権〜</h3>
+          <p class="blog-card__date">2024年12月13日</p>
+        </a>
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="blog-card">
+          <p class="blog-card__cat">不動産・相続</p>
+          <h3 class="blog-card__title">相続登記をしなければ罰則⁉〜令和6年4月からの義務化〜</h3>
+          <p class="blog-card__date">2024年5月10日</p>
+        </a>
+      </div>
+      <div class="blog__more fade-up">
+        <a href="https://kura-blog.kuramochikaikei.net/" target="_blank" rel="noopener" class="btn btn--navy">ブログをもっと見る →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOZOKU KNOWLEDGE -->
+  <section class="sozoku-knowledge" id="sozoku-knowledge">
+    <div class="container">
+      <p class="section-label fade-up">INHERITANCE KNOWLEDGE</p>
+      <h2 class="section-title fade-up">相続の基礎知識</h2>
+      <p class="section-desc fade-up">相続はステージによって必要な対応が異なります。どのステージでもお気軽にご相談ください。</p>
+      <div class="sk__grid fade-up">
+        <div class="sk-item">
+          <p class="sk-item__num">STAGE 01</p>
+          <h3 class="sk-item__title">相続発生前<br>（生前対策）</h3>
+        </div>
+        <div class="sk-item">
+          <p class="sk-item__num">STAGE 02</p>
+          <h3 class="sk-item__title">相続発生後の<br>流れと分割</h3>
+        </div>
+        <div class="sk-item">
+          <p class="sk-item__num">STAGE 03</p>
+          <h3 class="sk-item__title">申告・納税</h3>
+        </div>
+        <div class="sk-item">
+          <p class="sk-item__num">STAGE 04</p>
+          <h3 class="sk-item__title">申告後の<br>手続き</h3>
+        </div>
+        <div class="sk-item">
+          <p class="sk-item__num">STAGE 05</p>
+          <h3 class="sk-item__title">贈与について</h3>
+        </div>
+      </div>
+      <div style="margin-top:32px;text-align:center;">
+        <a href="#contact" class="btn btn--primary">相続について相談する →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEMINAR -->
+  <section class="seminar" id="seminar">
+    <div class="container">
+      <p class="section-label fade-up">SEMINAR</p>
+      <h2 class="section-title fade-up">セミナー情報</h2>
+      <p class="section-desc fade-up">相続・税務に関するセミナーを定期開催しています。お気軽にご参加ください。</p>
+      <div class="seminar__list fade-up">
+        <div class="seminar__item">
+          <div class="seminar__date"><div class="seminar__date-year">2025</div><div class="seminar__date-day">8.6</div></div>
+          <div class="seminar__title">相続セミナー2025「元気なうちにやっておきたい相続対策〜」</div>
+        </div>
+        <div class="seminar__item">
+          <div class="seminar__date"><div class="seminar__date-year">2024</div><div class="seminar__date-day">9.9</div></div>
+          <div class="seminar__title">相続セミナー2024「不動産の相続対策と老後資金を考える」</div>
+        </div>
+        <div class="seminar__item">
+          <div class="seminar__date"><div class="seminar__date-year">2024</div><div class="seminar__date-day">6.12</div></div>
+          <div class="seminar__title">相続セミナー2024「相続の手続きと最新情報！」</div>
+        </div>
+        <div class="seminar__item">
+          <div class="seminar__date"><div class="seminar__date-year">2023</div><div class="seminar__date-day">10.18</div></div>
+          <div class="seminar__title">相続セミナー2023「かしこい相続対策シリーズ」</div>
+        </div>
+        <div class="seminar__item">
+          <div class="seminar__date"><div class="seminar__date-year">2023</div><div class="seminar__date-day">6.21</div></div>
+          <div class="seminar__title">贈与税改正セミナー2023</div>
+        </div>
+      </div>
+      <div style="margin-top:40px">
+        <a href="#contact" class="btn btn--primary">セミナーについて問い合わせる →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <p class="section-label fade-up">FAQ</p>
+      <h2 class="section-title fade-up">よくある質問</h2>
+      <p class="section-desc fade-up">お問い合わせ前にご確認ください。</p>
+      <div class="faq__list fade-up">
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">初回相談は有料ですか？</span><span class="faq__q-icon"></span></div><div class="faq__a">初回相談は無料です。お気軽にお問い合わせください。お見積りも無料で承ります。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">対応エリアはどこですか？</span><span class="faq__q-icon"></span></div><div class="faq__a">東京・神奈川・千葉・埼玉を中心に対応しています。その他エリアについてはお問い合わせください。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">決算申告だけお願いすることはできますか？</span><span class="faq__q-icon"></span></div><div class="faq__a">月次業務を基本としているため、決算のみのご依頼は原則としてお受けしていません。詳しくはご相談ください。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">毎月の顧問料はどのくらいですか？</span><span class="faq__q-icon"></span></div><div class="faq__a">会社規模・業務内容によって異なります。まずはお気軽にご相談ください。契約月は振込、翌月から口座引き落としになります。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">記帳・給与計算もお願いできますか？</span><span class="faq__q-icon"></span></div><div class="faq__a">はい、対応可能です。顧問契約とは別料金になりますが、まとめてご依頼いただくことができます。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">相続について生前から相談できますか？</span><span class="faq__q-icon"></span></div><div class="faq__a">はい、生前対策のご相談も承っています。30年以上の資産税・相続対応の経験から、一次・二次相続を見据えた最適なプランをご提案します。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">他の事務所に依頼中ですが、セカンドオピニオンをお願いできますか？</span><span class="faq__q-icon"></span></div><div class="faq__a">はい、承っております。過去の資産評価や申告内容に不安がある場合も、お気軽にご相談ください。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">どんな業種・規模に対応していますか？</span><span class="faq__q-icon"></span></div><div class="faq__a">製造業・小売業・医療法人・不動産賃貸業など幅広い業種に対応しています。創業40年以上の実績があります。</div></div>
+        <div class="faq__item"><div class="faq__q"><span class="faq__q-mark">Q</span><span class="faq__q-text">節税対策も相談できますか？</span><span class="faq__q-icon"></span></div><div class="faq__a">はい、節税対策のご提案も行っています。ただし長期的な経営安定・家族の財産保全を最優先に考えたプランをご提案します。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section class="publications" id="publications">
+    <div class="container">
+      <p class="section-label fade-up">PUBLICATIONS</p>
+      <h2 class="section-title section-title--white fade-up">著書・執筆実績</h2>
+      <p class="section-desc section-desc--white fade-up">代表・倉持公一郎の著書と執筆実績です。</p>
+      <div class="pub__grid fade-up">
+        <a href="http://www.amazon.co.jp/%E3%83%AF%E3%82%B1%E3%81%82%E3%82%8A%E4%B8%8D%E5%8B%95%E7%94%A3%E3%81%AE%E7%9B%B8%E7%B6%9A%E5%AF%BE%E7%AD%96-%E5%80%89%E6%8C%81-%E5%85%AC%E4%B8%80%E9%83%8E/dp/4344999886" target="_blank" rel="noopener" class="pub-card">
+          <div class="pub-card__img"><img src="http://kuramochikaikei.net/img/publication/book_01.jpg" alt="ワケあり不動産の相続対策" onerror="this.style.display='none'"></div>
+          <div class="pub-card__body"><p class="pub-card__type">著書 / 経営者新書</p><h3 class="pub-card__title">ワケあり不動産の相続対策</h3><p class="pub-card__desc">相続トラブルの多くが不動産に関連していることを指摘し、分割と整理の方法をわかりやすく解説。</p><p class="pub-card__amazon">Amazon で見る →</p></div>
+        </a>
+        <div class="pub-card">
+          <div class="pub-card__img"><img src="http://kuramochikaikei.net/img/publication/book_02.jpg" alt="新税制時代における事業継承・相続対策" onerror="this.style.display='none'"></div>
+          <div class="pub-card__body"><p class="pub-card__type">著書</p><h3 class="pub-card__title">新税制時代における事業承継・相続対策</h3><p class="pub-card__desc">多忙な経営者向けに複雑な手続きをわかりやすくまとめた実践的ガイドブック。</p></div>
+        </div>
+        <div class="pub-card">
+          <div class="pub-card__img"><img src="http://kuramochikaikei.net/img/publication/book_03.jpg" alt="これからの会社づくりのノウハウ" onerror="this.style.display='none'"></div>
+          <div class="pub-card__body"><p class="pub-card__type">著書</p><h3 class="pub-card__title">これからの会社づくりのノウハウ</h3><p class="pub-card__desc">起業・節税・相続対策に関する情報を事例を交えてわかりやすく説明。</p></div>
+        </div>
+      </div>
+      <div style="margin-top:48px;padding:32px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;">
+        <p class="section-label" style="margin-bottom:16px;">MEDIA</p>
+        <p style="font-size:0.88rem;color:rgba(255,255,255,0.5);line-height:2;">雑誌・新聞への寄稿実績：株式公開と上場条件 / キャッシュフロー経営 / 法人事業税 / 経理体制の整備 / オーナー貸付の問題点 など</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INFO -->
+  <section class="info" id="info">
+    <div class="container">
+      <p class="section-label fade-up">ABOUT US</p>
+      <h2 class="section-title fade-up">事務所案内</h2>
+      <div class="info__grid fade-up">
+        <div>
+          <table class="info__table">
+            <tr><th>事務所名</th><td>倉持会計事務所<br>（公認会計士・税理士 倉持公一郎）</td></tr>
+            <tr><th>郵便番号</th><td>〒113-0022</td></tr>
+            <tr><th>所在地</th><td>東京都文京区千駄木3丁目43番3号<br>ATK千駄木ビル6F</td></tr>
+            <tr><th>電話</th><td><a href="tel:0338286251" style="color:var(--navy);text-decoration:none;font-weight:700;">03-3828-6251</a></td></tr>
+            <tr><th>FAX</th><td>03-3828-6255</td></tr>
+            <tr><th>メール</th><td>info@kuramochikaikei.com</td></tr>
+            <tr><th>営業時間</th><td>平日 9:00〜18:00</td></tr>
+            <tr><th>設立</th><td>1982年7月1日</td></tr>
+            <tr><th>代表者</th><td>倉持 公一郎（公認会計士・税理士）</td></tr>
+            <tr><th>認定</th><td>中小企業経営革新等認定支援機関<br>（第10号認定 ID：101013011301）</td></tr>
+            <tr><th>提携先</th><td>弁護士・司法書士・行政書士・不動産鑑定士・銀行・生命保険会社・不動産会社</td></tr>
+            <tr><th>アクセス</th><td>
+              東京メトロ千代田線「千駄木駅」2番出口 徒歩3分（ブックオフのあるビル6階）<br>
+              JR山手線ほか「西日暮里駅」道灌山通り経由 徒歩6分<br>
+              JR山手線ほか「日暮里駅」谷中銀座経由 徒歩8分<br>
+              都営バス上58・草63「千駄木三丁目」停留所下車
+            </td></tr>
+          </table>
+        </div>
+        <div class="info__map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.9!2d139.7625!3d35.7275!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188e5b3e3e3e3f%3A0x0!2z5p2x5Lqs6YO95paH5Lqs5Yy65Y+36YCV5pyo77yT5LiB55uu77yU77yT4oiS77yT!5e0!3m2!1sja!2sjp!4v1234567890"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="倉持会計事務所 地図">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKS -->
+  <section class="links" id="links">
+    <div class="container">
+      <p class="section-label fade-up">USEFUL LINKS</p>
+      <h2 class="section-title fade-up">関連リンク</h2>
+      <p class="section-desc fade-up">会計・税務・経営に関する公式情報源です。</p>
+      <div class="links__grid fade-up">
+        <a href="https://www.nta.go.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>国税庁</a>
+        <a href="https://www.kfs.go.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>国税不服審判所</a>
+        <a href="https://www.meti.go.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>経済産業省</a>
+        <a href="https://www.chusho.meti.go.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>中小企業庁</a>
+        <a href="https://www.smrj.go.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>中小企業基盤整備機構</a>
+        <a href="https://www.jetro.go.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>日本貿易振興機構（JETRO）</a>
+        <a href="https://www.nichizeiren.or.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>日本税理士連合会</a>
+        <a href="https://jicpa.or.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>日本公認会計士協会</a>
+        <a href="https://www.jcci.or.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>日本商工会議所</a>
+        <a href="https://www.med.or.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>日本医師会</a>
+        <a href="https://www.shakyo.or.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>全国社会福祉協議会</a>
+        <a href="https://www.roushikyo.or.jp/" target="_blank" rel="noopener" class="link-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>全国老人福祉施設協議会</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news" id="news">
+    <div class="container">
+      <p class="section-label fade-up">NEWS & TOPICS</p>
+      <h2 class="section-title fade-up">新着情報</h2>
+      <div class="news__list fade-up">
+        <div class="news__item">
+          <span class="news__date">2025.01</span>
+          <span class="news__text">確定申告相談会を開催します（1月19日〜2月13日）</span>
+        </div>
+        <div class="news__item">
+          <span class="news__date">2024.12</span>
+          <span class="news__text">令和7年からの「年収の壁」〜特定親族特別控除についてのご案内〜</span>
+        </div>
+        <div class="news__item">
+          <span class="news__date">2024.10</span>
+          <span class="news__text">年末調整の準備についてのご案内を送付しました</span>
+        </div>
+        <div class="news__item">
+          <span class="news__date">2024.04</span>
+          <span class="news__text">相続登記の義務化（令和6年4月1日施行）についてのご案内</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <p class="section-label fade-up">CONTACT</p>
+      <h2 class="section-title section-title--white fade-up">まず、話しましょう</h2>
+      <p class="section-desc section-desc--white fade-up">初回相談は無料です。どんな些細なことでもお気軽にどうぞ。</p>
+      <div class="contact__inner fade-up">
+        <div>
+          <div class="contact__tel-block">
+            <p class="contact__tel-label">PHONE</p>
+            <a href="tel:0338286251" class="contact__tel-num">03-3828-6251</a>
+            <p class="contact__tel-hours">平日 9:00〜18:00</p>
+            <p class="contact__free">✓ 初回相談 無料 &nbsp;|&nbsp; ✓ 見積り 無料</p>
+          </div>
+          <div style="background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.2);padding:24px;border-radius:4px;margin-bottom:24px;">
+            <p style="font-size:0.75rem;letter-spacing:0.15em;color:var(--gold);margin-bottom:8px;">ONLINE CONSULTATION</p>
+            <p style="font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:8px;">オンライン相談 受付中</p>
+            <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.8;">来所不要のオンライン相談も承っております。遠方の方や、まずは気軽に相談したい方もお気軽にどうぞ。</p>
+          </div>
+          <p class="contact__note">まずはお電話またはフォームからご連絡ください。内容を確認のうえ、24時間以内に折り返しご連絡します。「何から相談すればいいかわからない」という方も歓迎です。<br><br>オンライン相談も承っています。</p>
+        </div>
+        <form class="form" action="https://kuramochikaikei.net/inquiry/index.html" method="GET">
+          <div class="form-group"><label>お名前 *</label><input type="text" name="name" placeholder="山田 太郎" required></div>
+          <div class="form-group"><label>会社名</label><input type="text" name="company" placeholder="株式会社〇〇"></div>
+          <div class="form-group"><label>電話番号 *</label><input type="tel" name="tel" placeholder="090-0000-0000" required></div>
+          <div class="form-group"><label>メールアドレス *</label><input type="email" name="email" placeholder="example@email.com" required></div>
+          <div class="form-group"><label>メールアドレス（確認）</label><input type="email" name="email_confirm" placeholder="example@email.com"></div>
+          <div class="form-group"><label>ご住所</label><input type="text" name="address" placeholder="東京都〇〇区..."></div>
+          <div class="form-group">
+            <label>ご相談内容（法人）</label>
+            <select name="service_corp">
+              <option value="">選択してください</option>
+              <option>税務相談</option>
+              <option>会計設立</option>
+              <option>経理指導</option>
+              <option>経営計画</option>
+              <option>事業承継</option>
+              <option>その他（法人）</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ご相談内容（個人・相続）</label>
+            <select name="service_personal">
+              <option value="">選択してください</option>
+              <option>相続税申告</option>
+              <option>相続対策</option>
+              <option>税務調査対応</option>
+              <option>相続税還付</option>
+              <option>所得税申告（準確定申告含む）</option>
+              <option>その他（個人）</option>
+            </select>
+          </div>
+          <div class="form-group"><label>ご希望日時（第1希望）</label><input type="text" name="date1" placeholder="例：2025年4月10日 10:00〜11:00"></div>
+          <div class="form-group"><label>ご希望日時（第2希望）</label><input type="text" name="date2" placeholder="例：2025年4月11日 14:00〜15:00"></div>
+          <div class="form-group"><label>ご希望日時（第3希望）</label><input type="text" name="date3" placeholder="例：2025年4月12日 13:00〜14:00"></div>
+          <div class="form-group"><label>メッセージ</label><textarea name="message" placeholder="ご相談内容をご記入ください"></textarea></div>
+          <button type="submit" class="btn btn--gold">送信する →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <a href="#hero" class="footer__logo">倉持会計事務所<span>KURAMOCHI ACCOUNTING OFFICE</span></a>
+      <div class="footer__links">
+        <a href="#services">サービス</a>
+        <a href="#voices">お客様の声</a>
+        <a href="#seminar">セミナー</a>
+        <a href="#publications">著書</a>
+        <a href="#faq">よくある質問</a>
+        <a href="#info">事務所案内</a>
+        <a href="#news">新着情報</a>
+        <a href="#contact">お問い合わせ</a>
+        <a href="http://kuramochikaikei.net/privacy.html" target="_blank">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="footer__bottom"><p>© 2025 倉持会計事務所 All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    // Hamburger
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+    // Service tabs
+    document.querySelectorAll('.services__tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.services__tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.services__panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('panel-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq__q').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.parentElement;
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq__item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // Fade up
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
