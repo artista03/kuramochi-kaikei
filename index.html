@@ -56,7 +56,8 @@
     .nav__cta { background: var(--navy) !important; color: var(--white) !important; padding: 8px 20px; border-radius: 4px; font-size: 0.8rem !important; transition: background 0.3s; }
     .nav__cta:hover { background: var(--gold) !important; color: var(--navy) !important; }
     .nav__cta::after { display: none !important; }
-    .nav__tel { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; }
+    .nav__tel-link { font-size: 0.85rem; font-weight: 700; color: var(--navy); text-decoration: none; letter-spacing: 0.03em; }
+    .nav__tel-link::after { display: none !important; }
     .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav__hamburger span { display: block; width: 24px; height: 2px; background: var(--navy); }
 
@@ -351,9 +352,9 @@
         <li><a href="#faq">よくある質問</a></li>
         <li><a href="#blog">ブログ・著書</a></li>
         <li><a href="#info">事務所案内</a></li>
+        <li><a href="tel:0338286251" class="nav__tel-link">03-3828-6251</a></li>
         <li><a href="#contact" class="nav__cta">無料相談する</a></li>
       </ul>
-      <a href="tel:0338286251" class="nav__tel">03-3828-6251</a>
     </div>
   </nav>
 
