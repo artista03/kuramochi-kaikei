@@ -317,6 +317,67 @@
     .news__date { flex-shrink: 0; font-size: 0.78rem; color: var(--gold); letter-spacing: 0.05em; }
     .news__text { color: var(--navy); line-height: 1.7; }
 
+    /* PROGRESS BAR */
+    #progress-bar { position: fixed; top: 0; left: 0; height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); z-index: 200; width: 0; transition: width 0.08s linear; pointer-events: none; box-shadow: 0 0 8px rgba(201,168,76,0.5); }
+
+    /* HERO CANVAS */
+    #hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    .hero__bg { z-index: 1; }
+    .hero__content, .hero__stats, .hero__scroll { position: relative; z-index: 2; }
+
+    /* SECTION WATERMARK */
+    .section-watermark { position: absolute; top: -10px; left: -10px; font-family: 'Shippori Mincho', serif; font-size: clamp(5rem, 14vw, 12rem); font-weight: 700; color: rgba(15,32,64,0.05); white-space: nowrap; pointer-events: none; line-height: 1; user-select: none; z-index: 0; letter-spacing: -0.02em; }
+    .section-watermark--white { color: rgba(255,255,255,0.05); }
+    .targets, .whyus, .services, .voices, .faq, .publications, .process, .sozoku-knowledge { position: relative; overflow: hidden; }
+    .targets .container, .whyus .container, .services .container, .voices .container,
+    .faq .container, .publications .container, .process .container, .sozoku-knowledge .container { position: relative; z-index: 1; }
+
+    /* COUNTER */
+    .hero__stat-num .counter { font-family: 'Shippori Mincho', serif; font-size: 2.4rem; font-weight: 700; color: var(--gold); line-height: 1; }
+
+    /* MOBILE FIXED CTA */
+    .mobile-cta { display: none; }
+    @media (max-width: 900px) {
+      .mobile-cta {
+        display: flex;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 99;
+        background: rgba(15,32,64,0.97);
+        backdrop-filter: blur(12px);
+        padding: 10px 16px;
+        padding-bottom: max(14px, env(safe-area-inset-bottom));
+        gap: 10px;
+        border-top: 1px solid rgba(201,168,76,0.25);
+        box-shadow: 0 -4px 24px rgba(0,0,0,0.3);
+      }
+      body { padding-bottom: 76px; }
+    }
+    .mobile-cta__tel, .mobile-cta__contact {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 12px 8px;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+    .mobile-cta__tel { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15); color: #fff; }
+    .mobile-cta__contact { background: var(--gold); color: var(--navy); flex: 1.3; }
+
+    /* BACK TO TOP */
+    #back-top { position: fixed; right: 20px; bottom: 90px; width: 44px; height: 44px; background: var(--navy); border: 1px solid rgba(201,168,76,0.4); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transform: translateY(10px); transition: opacity 0.3s, transform 0.3s, background 0.3s; z-index: 90; }
+    #back-top.visible { opacity: 1; transform: translateY(0); }
+    #back-top:hover { background: var(--gold); }
+    #back-top svg { width: 18px; height: 18px; color: var(--gold); }
+    #back-top:hover svg { color: var(--navy); }
+    @media (max-width: 900px) { #back-top { bottom: 90px; right: 16px; } }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .nav__links { display: none; }
@@ -339,6 +400,7 @@
   </style>
 </head>
 <body>
+  <div id="progress-bar"></div>
 
   <!-- NAV -->
   <nav class="nav" id="nav">
@@ -360,6 +422,7 @@
 
   <!-- HERO -->
   <section class="hero" id="hero">
+    <canvas id="hero-canvas"></canvas>
     <div class="hero__bg"></div>
     <div class="hero__content">
       <p class="hero__label fade-up">CERTIFIED PUBLIC ACCOUNTANT · TOKYO BUNKYO</p>
@@ -379,9 +442,9 @@
       </div>
     </div>
     <div class="hero__stats">
-      <div class="hero__stat"><div class="hero__stat-num">40<span>年以上</span></div><div class="hero__stat-label">創業からの実績</div></div>
-      <div class="hero__stat"><div class="hero__stat-num">3<span>冊</span></div><div class="hero__stat-label">代表著書</div></div>
-      <div class="hero__stat"><div class="hero__stat-num">0<span>円</span></div><div class="hero__stat-label">初回相談料</div></div>
+      <div class="hero__stat"><div class="hero__stat-num"><span class="counter" data-target="40">0</span><span>年以上</span></div><div class="hero__stat-label">創業からの実績</div></div>
+      <div class="hero__stat"><div class="hero__stat-num"><span class="counter" data-target="3">0</span><span>冊</span></div><div class="hero__stat-label">代表著書</div></div>
+      <div class="hero__stat"><div class="hero__stat-num"><span class="counter" data-target="0">0</span><span>円</span></div><div class="hero__stat-label">初回相談料</div></div>
     </div>
     <div class="hero__scroll"><span>SCROLL</span><div class="hero__scroll-line"></div></div>
   </section>
@@ -390,6 +453,7 @@
 
   <!-- TARGETS -->
   <section class="targets" id="targets">
+    <div class="section-watermark">WHO WE SERVE</div>
     <div class="container">
       <p class="section-label fade-up">WHO WE SERVE</p>
       <h2 class="section-title fade-up">どなたのご相談にも対応します</h2>
@@ -422,6 +486,7 @@
 
   <!-- WHY US -->
   <section class="whyus" id="whyus">
+    <div class="section-watermark section-watermark--white">TRUST</div>
     <div class="container">
       <p class="section-label fade-up">WHY CHOOSE US</p>
       <h2 class="section-title section-title--white fade-up">選ばれる4つの理由</h2>
@@ -481,6 +546,7 @@
 
   <!-- SERVICES -->
   <section class="services" id="services">
+    <div class="section-watermark section-watermark--white">SERVICE</div>
     <div class="container">
       <p class="section-label fade-up">SERVICES</p>
       <h2 class="section-title section-title--white fade-up">サービス案内</h2>
@@ -637,6 +703,7 @@
 
   <!-- VOICES -->
   <section class="voices" id="voices">
+    <div class="section-watermark">VOICE</div>
     <div class="container">
       <p class="section-label fade-up">TESTIMONIALS</p>
       <h2 class="section-title fade-up">お客様の声</h2>
@@ -774,6 +841,7 @@
 
   <!-- FAQ -->
   <section class="faq" id="faq">
+    <div class="section-watermark">FAQ</div>
     <div class="container">
       <p class="section-label fade-up">FAQ</p>
       <h2 class="section-title fade-up">よくある質問</h2>
@@ -794,6 +862,7 @@
 
   <!-- PUBLICATIONS -->
   <section class="publications" id="publications">
+    <div class="section-watermark section-watermark--white">BOOKS</div>
     <div class="container">
       <p class="section-label fade-up">PUBLICATIONS</p>
       <h2 class="section-title section-title--white fade-up">著書・執筆実績</h2>
@@ -994,6 +1063,23 @@
     <div class="footer__bottom"><p>© 2026 倉持会計事務所 All rights reserved.</p></div>
   </footer>
 
+  <!-- MOBILE FIXED CTA -->
+  <div class="mobile-cta">
+    <a href="tel:0338286251" class="mobile-cta__tel">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.1 1.22 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+      電話する
+    </a>
+    <a href="#contact" class="mobile-cta__contact">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+      無料相談する
+    </a>
+  </div>
+
+  <!-- BACK TO TOP -->
+  <button id="back-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+
   <script>
     // Nav scroll
     const nav = document.getElementById('nav');
@@ -1024,6 +1110,92 @@
         if (!isOpen) item.classList.add('open');
       });
     });
+
+    // Progress bar
+    const bar = document.getElementById('progress-bar');
+    window.addEventListener('scroll', () => {
+      const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+      bar.style.width = Math.min(pct, 100) + '%';
+    });
+
+    // Back to top
+    const backTop = document.getElementById('back-top');
+    window.addEventListener('scroll', () => backTop.classList.toggle('visible', window.scrollY > 400));
+
+    // Hero canvas (particle network)
+    (function() {
+      const canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, pts;
+      const N = 55, DIST = 130;
+      function resize() {
+        W = canvas.width = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      }
+      function init() {
+        pts = Array.from({length: N}, () => ({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: Math.random() * 1.5 + 0.5
+        }));
+      }
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < N; i++) {
+          for (let j = i + 1; j < N; j++) {
+            const d = Math.hypot(pts[i].x - pts[j].x, pts[i].y - pts[j].y);
+            if (d < DIST) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(201,168,76,${0.18 * (1 - d / DIST)})`;
+              ctx.lineWidth = 0.6;
+              ctx.moveTo(pts[i].x, pts[i].y);
+              ctx.lineTo(pts[j].x, pts[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        pts.forEach(p => {
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(201,168,76,0.5)';
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+        });
+        requestAnimationFrame(draw);
+      }
+      resize(); init(); draw();
+      window.addEventListener('resize', () => { resize(); init(); });
+    })();
+
+    // Counter animation
+    function countUp(el, target, duration) {
+      const start = performance.now();
+      if (target === 0) { el.textContent = '0'; return; }
+      const update = now => {
+        const p = Math.min((now - start) / duration, 1);
+        const e = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.floor(e * target);
+        if (p < 1) requestAnimationFrame(update);
+        else el.textContent = target;
+      };
+      requestAnimationFrame(update);
+    }
+    const counterObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.querySelectorAll('.counter').forEach(el => {
+            countUp(el, parseInt(el.dataset.target), 1800);
+          });
+          counterObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    const statsEl = document.querySelector('.hero__stats');
+    if (statsEl) counterObs.observe(statsEl);
 
     // Email confirm validation
     const form = document.querySelector('.form');
